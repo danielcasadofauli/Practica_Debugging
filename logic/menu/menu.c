@@ -29,8 +29,8 @@ int askUserForOption() {
 	return  option;
 }
 
-int isNotCorrect(int option) {
-	return option < FIRST_OPTION && option > LAST_OPTION;
+int isCorrect(int option) {
+	return option >= FIRST_OPTION && option <= LAST_OPTION;
 }
 
 int isExit(int option) {
