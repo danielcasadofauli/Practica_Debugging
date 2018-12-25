@@ -30,10 +30,10 @@ int main() {
 		do {
 			option = askUserForOption();
 
-			if (!isCorrect(option)) {
+			if (isNotCorrect(option)) {
 				printOptionError();
 			}
-		} while (!isCorrect(option));
+		} while (isNotCorrect(option));
 
 		execute(option, &l);
 	} while (!isExit(option));

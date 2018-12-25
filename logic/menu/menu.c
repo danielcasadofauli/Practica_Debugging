@@ -29,7 +29,7 @@ int askUserForOption() {
 	return  option;
 }
 
-int isCorrect(int option) {
+int isNotCorrect(int option) {
 	return option < FIRST_OPTION && option > LAST_OPTION;
 }
 
