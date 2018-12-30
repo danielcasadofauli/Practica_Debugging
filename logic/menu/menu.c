@@ -15,18 +15,25 @@ char* readUserString() {
 
 
     scanf("%c", &tmp);
-    do {
-        i++[ret] = tmp;
 
-        if (i >= size) {
-            size *= 2;
-            resize(&ret, size);
-        }
-        scanf("%c", &tmp);
-    } while (tmp != '\n');
+    if (tmp == '\n'){
+        ret[i] = tmp;
+        ret[++i] = '\0';
+    }
+    else {
+        do {
+            i++[ret] = tmp;
 
-    ret[i++] = '\0';
-    resize(&ret, i + 1);
+            if (i >= size) {
+                size *= 2;
+                resize(&ret, size);
+            }
+            scanf("%c", &tmp);
+        } while (tmp != '\n');
+
+        ret[i++] = '\0';
+        resize(&ret, i + 1);
+    }
 
     return ret;
 }
