@@ -20,7 +20,7 @@ int main() {
 	List l = create();
 
 	readWholeFile(f, &l);
-
+    fclose(f);
 
 	printWelcomeLine();
 
