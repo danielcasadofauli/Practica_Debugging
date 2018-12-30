@@ -6,6 +6,31 @@
 #define FIRST_OPTION 1
 #define LAST_OPTION 4
 
+
+char* readUserString() {
+    int i = 0;
+    int size = 10;
+    char tmp;
+    char *ret = (char *) malloc(sizeof(char) * size);
+
+
+    scanf("%c", &tmp);
+    do {
+        i++[ret] = tmp;
+
+        if (i >= size) {
+            size *= 2;
+            resize(&ret, size);
+        }
+        scanf("%c", &tmp);
+    } while (tmp != '\n');
+
+    ret[i++] = '\0';
+    resize(&ret, i + 1);
+
+    return ret;
+}
+
 void printWelcomeLine() {
 	printf("\n\t---===  Welcome to TripOrganizer  ===---\n");
 }
@@ -22,11 +47,30 @@ void printOptionError() {
 }
 
 int askUserForOption() {
-	int option;
+	int numOption = 0;
+	int i;
+	int error = 0;
+    char *auxOption;
+
 	printf("\tChoose an option: ");
-	scanf("%d", &option);
-	while(getchar() !='\n');
-	return  option;
+	auxOption = readUserString();
+
+	for (i = 0; auxOption[i] != '\0'; i++){
+	    if (auxOption[i] < '0' || auxOption[i] > '9'){
+	        error = 1;
+	        break;
+	    }
+	    else{
+	        numOption *= 10;
+	        numOption += auxOption[i] - '0';
+	    }
+	}
+
+	if (error || i == 0){
+	    numOption = -1;
+	}
+
+	return  numOption;
 }
 
 int isCorrect(int option) {
@@ -35,29 +79,6 @@ int isCorrect(int option) {
 
 int isExit(int option) {
 	return option == LAST_OPTION;
-}
-
-char * readUserString() {
-	int i = 0;
-	int size = 10;
-	char tmp;
-	char *ret = (char *) malloc(sizeof(char) * size);
-
-
-	scanf("%c", &tmp);
-	do {
-		i++[ret] = tmp;
-
-		if (i >= size) {
-			size *= 2;
-			resize(&ret, size);
-		}
-		scanf("%c", &tmp);
-	} while (tmp != '\n');
-
-	resize(&ret, i + 1);
-
-	return ret;
 }
 
 char * askUserForPath() {
@@ -130,7 +151,7 @@ void printDestinationList(List * l) {
 }
 
 void printAverage(double average) {
-	printf("\n\t\tAverage: %lf\n\n", average);
+	printf("\n\t\tAverage: %0.2f\n\n", average);
 }
 
 
@@ -138,6 +159,6 @@ void printTop3(double * prices) {
 	int i = 0;
 
 	for (i = 0; i < 3; i++) {
-		printf("\t\t%d. %lf\n", i+1, prices[i]);
+		printf("\t\t%d. %0.2f\n", i+1, prices[i]);
 	}
 }
