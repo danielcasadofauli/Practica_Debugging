@@ -17,8 +17,8 @@ char* readUserString() {
     scanf("%c", &tmp);
 
     if (tmp == '\n'){
-        ret[i] = tmp;
-        ret[++i] = '\0';
+        ret[i++] = tmp;
+        ret[i] = '\0';
     }
     else {
         do {
