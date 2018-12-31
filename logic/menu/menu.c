@@ -76,6 +76,7 @@ int askUserForOption() {
 	if (error || i == 0){
 	    numOption = -1;
 	}
+    free(auxOption);
 
 	return  numOption;
 }

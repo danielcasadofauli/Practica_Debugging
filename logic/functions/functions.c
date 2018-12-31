@@ -108,6 +108,8 @@ void readNewFile(List * l) {
 		printFileError(input);
 	}
 
+	free(input);
+
 }
 
 void execute(int option, List * l) {
