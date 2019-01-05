@@ -104,6 +104,9 @@ void removePoi(List * l, int mode) {
 			aux -> next[i] -> prev[i] = aux -> prev[i];
 		}
 		l -> n--;
+
+		freeAll(aux -> dest);
+        free(aux);
 	}
 }
 
@@ -162,5 +165,9 @@ void destroy(List * l) {
 	while (!isEmpty(*l)) {
 		removePoi(l, 0);
 	}
+
+	free(l ->first);
+	free(l ->last)
+	free(l);
 
 }
