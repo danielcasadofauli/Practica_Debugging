@@ -168,6 +168,5 @@ void destroy(List * l) {
 
 	free(l ->first);
 	free(l ->last)
-	free(l);
 
 }
