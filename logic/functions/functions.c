@@ -121,7 +121,8 @@ void execute(int option, List * l) {
 			planTrip(l);
 			break;
 		case 3:
-			readNewFile(l);
+			destroy(l);
+		    readNewFile(l);
 			break;
 	}
 }
